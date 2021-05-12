@@ -1,9 +1,5 @@
 spring:
   datasource:
-#    name: myspring  #数据库名
-#    url: jdbc:mysql://localhost:3306/samshui?serverTimezone=GMT%2B8 #url
-#    username: root  #用户名
-#    password: yhm012710  #密码
     url: jdbc:mysql://rm-2zeh286g9l5sp7i76yo.mysql.rds.aliyuncs.com/spring
     name: spring
     username: myroot
