@@ -10,4 +10,5 @@ public class UserInfo {
   String phoneNumber;
   String emailAddress;
   String password;
+  int UserStatue;
 }

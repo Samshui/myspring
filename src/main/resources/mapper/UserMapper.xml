@@ -21,19 +21,25 @@
     </select>
 
     <select id="info" parameterType="String" resultType="com.example.myspring.dto.UserInfo">
-        select UserID, UserName, age, phoneNumber, emailAddress, password
+        select UserID, UserName, age, phoneNumber, emailAddress, password, UserStatue
         from user
         where UserID = #{userID}
+    </select>
+
+    <select id="infoByPhoneNumber" parameterType="String" resultType="com.example.myspring.dto.UserInfo">
+        select UserID, UserName, age, phoneNumber, emailAddress, password, UserStatue
+        from user
+        where phoneNumber = #{phoneNumber}
     </select>
 
     <update id="changeTelephone" parameterType="String">
         update user
         set phoneNumber = #{newPhone}
-        where phoneNumber = #{oldPhone} AND userID = #{userID}
+        where phoneNumber = #{oldPhone}
     </update>
     
     <select id="telephoneIsExist" parameterType="String" resultType="com.example.myspring.dto.UserInfo">
-        select UserID, UserName, age, phoneNumber, emailAddress, password
+        select UserID, UserName, age, phoneNumber, emailAddress, password, UserStatue
         from user
         where phoneNumber = #{phoneNumber}
     </select>

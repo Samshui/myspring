@@ -1,6 +1,7 @@
 package com.example.myspring.controller;
 
 import com.example.myspring.dto.UserInfo;
+import com.example.myspring.pojo.ResponseData;
 import com.example.myspring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,56 +16,57 @@ public class UserController {
   private UserService userService;
 
   @RequestMapping("/register")
-  public int register(@RequestParam("UserName") String userName,
-					  @RequestParam("Password") String password) {
+  public ResponseData register(@RequestParam("UserID") String userID,
+							   @RequestParam("UserName") String userName,
+							   @RequestParam("Password") String password,
+							   @RequestParam("PhoneNumber") String phoneNumber) {
     try {
-      return userService.register(userName, password);
+      return userService.register(userID, userName, password, phoneNumber);
 	} catch (Exception e) {
       e.printStackTrace();
-      return -1;
+	  return ResponseData.Error("错误", null, -1);
 	}
   }
 
   @RequestMapping("/login")
-  public String login(@RequestParam("phoneNumber") String phoneNumber,
-					  @RequestParam("password") String password) {
+  public ResponseData login(@RequestParam("PhoneNumber") String phoneNumber,
+					  @RequestParam("Password") String password) {
     try {
       return userService.login(phoneNumber, password);
 	} catch (Exception e) {
       e.printStackTrace();
-      return "error";
+	  return ResponseData.Error("错误", null, -1);
 	}
   }
 
   @RequestMapping("/info")
-  public UserInfo info(@RequestParam("userID") String userID) {
+  public ResponseData info(@RequestParam("UserID") String userID) {
     try {
       return userService.info(userID);
 	} catch (Exception e) {
       e.printStackTrace();
-      return null;
+	  return ResponseData.Error("错误", null, -1);
 	}
   }
 
   @RequestMapping("/changeTelephone")
-  public int changeTelephone(@RequestParam("userID") String userID,
-							 @RequestParam("oldPhone") String oldPhone,
+  public ResponseData changeTelephone(@RequestParam("oldPhone") String oldPhone,
 							 @RequestParam("newPhone") String newPhone) {
     try {
-      return userService.changeTelephone(userID, oldPhone, newPhone);
+      return userService.changeTelephone(oldPhone, newPhone);
 	} catch (Exception e) {
 	  e.printStackTrace();
-	  return -1;
+	  return ResponseData.Error("错误", null, -1);
 	}
   }
 
   @RequestMapping("/telephoneIsExist")
-  public UserInfo telephone(@RequestParam("phoneNumber") String phoneNumber) {
+  public ResponseData telephone(@RequestParam("phoneNumber") String phoneNumber) {
     try {
       return userService.telephoneIsExist(phoneNumber);
 	} catch (Exception e) {
       e.printStackTrace();
-      return null;
+	  return ResponseData.Error("错误", null, -1);
 	}
   }
 }

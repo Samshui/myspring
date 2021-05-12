@@ -18,8 +18,11 @@ public interface UserMapper {
   // 用户信息
   UserInfo info(String userID);
 
+  // 用户信息 by 联系方式
+  UserInfo infoByPhoneNumber(String phoneNumber);
+
   // 修改联系方式
-  int changeTelephone(String userID, String oldPhone, String newPhone);
+  int changeTelephone(String oldPhone, String newPhone);
 
   // 查看联系方式是否已被使用
   UserInfo telephoneIsExist(String phoneNumber);
