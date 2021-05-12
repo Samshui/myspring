@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.myspring.mapper.UserMapper">
+    <update id="addUser" parameterType="com.example.myspring.pojo.User">
+        insert into user(UserID, UserName, age, phoneNumber, emailAddress, password)
+        value (#{UserID}, #{UserName}, #{age}, #{phoneNumber}, #{emailAddress}, #{password})
+    </update>
+
+    <select id="checkUserName" parameterType="String" resultType="String">
+        select UserName from user where UserName = #{userName}
+    </select>
+
+</mapper>
