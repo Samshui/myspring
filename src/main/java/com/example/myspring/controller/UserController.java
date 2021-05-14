@@ -1,6 +1,5 @@
 package com.example.myspring.controller;
 
-import com.example.myspring.dto.UserInfo;
 import com.example.myspring.pojo.ResponseData;
 import com.example.myspring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

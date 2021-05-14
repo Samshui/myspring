@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.myspring.mapper.ExperimentMapper">
+    <update id="addExperiment" parameterType="com.example.myspring.pojo.Experiment">
+        insert
+        into experiments(Eid, ELabel, Lab, EName, TimeMorning, TimeNoon, TimeEvening, SiteSize)
+        value (#{Eid}, #{ELabel}, #{Lab}, #{EName}, #{TimeMorning}, #{TimeNoon}, #{TimeEvening}, #{SiteSize})
+    </update>
+
+    <select id="getInfoByEID" parameterType="String" resultType="com.example.myspring.dto.ExperimentInfo">
+        select Eid, ELabel, Lab, EName, TimeMorning, TimeNoon, TimeEvening, SiteSize
+        from experiments
+        where Eid = #{Eid}
+    </select>
+
+    <delete id="deleteExperiment" parameterType="String">
+        delete
+        from experiments
+        where Eid = #{Eid}
+    </delete>
+
+    <select id="getByLabel" parameterType="int" resultType="com.example.myspring.dto.ExperimentInfo">
+        select *
+        from experiments
+        where ELabel = #{ELabel}
+    </select>
+
+    <select id="getAllExperiments" resultType="com.example.myspring.dto.ExperimentInfo">
+        select *
+        from experiments
+    </select>
+</mapper>
